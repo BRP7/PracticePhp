@@ -11,7 +11,6 @@ practice/
 		/Cart
 		/Checkout
 
-
 	View = HTML UI section
 		/Product
 		/Product/List.php
