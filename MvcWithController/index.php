@@ -52,14 +52,6 @@
 // $productView = new View_Product();
 // echo $productView->toHtml($products);
 
-
-
-
-
-// <?php
-
-// <?php
-
 include "Lib/autoload.php";
 
 class Ccc{
@@ -71,6 +63,7 @@ class Ccc{
     }
 }
 Ccc::init();
+//list of product is inside controller file
 
 
 // $request = new Model_Request();
