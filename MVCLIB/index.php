@@ -164,27 +164,26 @@ $productModel = new Model_Product();
 $productView = new View_Product();
 
 // Handle form submission
-echo "Hello";
+// echo "Hello";
 // print_r($request->getPostData());
+
 if ($request->isPost()) {
     $postData = $request->getPostData('pdata');
     // print_r($postData);
     // var_dump(isset($postData['submit']));
+    var_dump($postData);
     
     if (($request->getPostData('submit'))) {
         // Insert or update based on the presence of 'product_id'
-        if (!empty($postData['product_id'])) {
-            $productId = $postData['product_id'];
-            // unset($postData['product_id']); 
-            $productModel->update($postData, ['product_id' => $productId]);
-            header("Location: index.php");   
-            // Redirect to index.php after successful submission
-            // header("Location: index.php");
-            // exit();
-        }
-        else{
+        
             $productModel->save($postData);
-        }
+    }
+    elseif (($request->getPostData('update'))) {
+        // Insert or update based on the presence of 'product_id'
+            $productModel->update($postData, ['product_id' => $request->getQueryData("id")]);
+            header("Location: index.php");   
+    }else{
+        echo "Error che bhai";
     }
 }
 

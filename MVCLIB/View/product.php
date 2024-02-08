@@ -1,19 +1,24 @@
 <?php
 class View_Product
 {
-    // public function __construct()
-    // {
+    public $id;
+    public function __construct()
+    {
+        $request = new Model_Request();
+        $this->id = ($request->getQueryData("id"));
+    }
 
-    // }
-
-    public function createForm($productDetails=[])
+    public function createForm($productDetails = [])
     {
         $form = '<form action="" method="POST">';
+        // $form .= '<div>';
+        // $form .= $this->creteTextField('pdata[product_id]', "Product Id: ", $productDetails['product_id'] ?? '');
+        // $form .= '</div>';
+        // $form .= '<div>';
+        // $form .= $this->creteTextField('pdata[product_id]', "Product Id: ", $productDetails['product_id'] ?? '');
+        // $form .= '</div>';
         $form .= '<div>';
-        $form .= $this->creteTextField('pdata[product_id]', "Product Id: ", $productDetails['product_id'] ?? '');
-        $form .= '</div>';
-        $form .= '<div>';
-        $form .= $this->creteTextField('pdata[product_name]', "Product Name: ", $productDetails['product_name'] ?? ''); 
+        $form .= $this->creteTextField('pdata[product_name]', "Product Name: ", $productDetails['product_name'] ?? '');
         $form .= '</div>';
 
         $form .= '<div>';
@@ -40,8 +45,15 @@ class View_Product
         $form .= $this->createRadioBtn('pdata[product_type]', 'Product Type', ['Simple', 'Bundle'], $productDetails['product_type'] ?? '');
         $form .= '</div>';
 
+
         $form .= '<div>';
-        $form .= $this->creteSubmitBtn('Submit');
+        if ($this->id) {
+
+            $form .= $this->creteUpdateBtn('Update');
+        } else {
+            $form .= $this->creteSubmitBtn('Submit');
+
+        }
         $form .= '</div>';
 
         $form .= '</form>';
@@ -81,12 +93,17 @@ class View_Product
 
     public function creteSubmitBtn($title)
     {
-        return '<input type="submit" name="submit" value="'.$title.'">';
+        return '<input type="submit" name="submit" value="' . $title . '">';
+    }
+
+    public function creteUpdateBtn($title)
+    {
+        return '<input type="submit" name="update" value="Update">';
     }
 
     public function toHtml($products)
     {
-        $html = '<a href="index.php?action=add">Add New Product</a><br>';
+        $html = '<a href="index.php?action=add&id=0">Add New Product</a><br>';
         $html .= '<table border="1">';
         $html .= '<tr><th>Product Name</th><th>Actions</th></tr>';
 
