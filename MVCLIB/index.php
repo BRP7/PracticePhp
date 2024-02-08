@@ -1,8 +1,6 @@
 <?php
 
 
-// <?php
-
 include "Lib/autoload.php";
 
 $request = new Model_Request();
@@ -61,7 +59,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
         
         echo $productView->createForm(); 
         // if(isset($postData['submit'])){
-            // $productModel->save($postData);
+        //     $productModel->save($postData);
         // }
     }
 }
