@@ -1,5 +1,5 @@
 <?php
-   class Mage
+class Mage
    {
     //    public static function init()
     //    {
@@ -11,9 +11,9 @@
     //    }
     public static function init(){
         // $modelObj = new Core_Model_Request();
-        $modelObj = Mage::getModel("core/request");
+        // $modelObj = Mage::getModel("core/request");
         // $modelObj->init();
-        $modelObj->getRequestUri();
+        // $modelObj->getRequestUri();
         // echo get_class($modelObj);
         $controllerObj = new Core_Controller_Front();
         $controllerObj->init();
@@ -37,7 +37,18 @@ public static function getModel($className){
 // public static function register($key, $value){}
 // public static function registry($key){}
 // public static function getBaseDir($subDir = null){}
-
-    }
+public static function getSingleton($className)
+{
+}
+public static function register($key, $value)
+{
+}
+public static function registry($key)
+{
+}
+public static function getBaseDir($subDir = null)
+{
+}
+}
    
-   ?>
+?>

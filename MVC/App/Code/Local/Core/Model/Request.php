@@ -48,9 +48,8 @@ class Core_Model_Request
 		$str = str_replace('/practice/MVC/', '', $requstUri);
 		return $str;
 	}
-	protected $_actionName;
-	protected $_controllerName;
-	protected $_moduleName;
+	protected $_controllerName, $_moduleName, $_actionName;
+
 	public function getModuleName()
 	{
 		return $this->_moduleName;
@@ -65,17 +64,20 @@ class Core_Model_Request
 	}
 	public function __construct()
 	{
-		$var = $this->getRequestUri();
-		$arr = explode('/', $var);
-		$this->_controllerName = $arr[1];
-		$this->_moduleName = $arr[0];
-		$this->_actionName = $arr[2];
+		$requestUri = $this->getRequestUri();
+        $requestUri = explode('/', $requestUri);
+        // print_r($requestUri);
+        $this->_moduleName = $requestUri[0];
+        $this->_controllerName = $requestUri[1];
+        $this->_actionName = $requestUri[2];
 	}
 	public function getFullControllerClass()
 	{
-		// Page_Controller_index
-		$model = $this->_moduleName;
-		$contro = $this->_controllerName;
-		return ucfirst($model) .'_Controller_' .ucfirst($contro);
+		// // Page_Controller_index
+		// $model = $this->_moduleName;
+		// $contro = $this->_controllerName;
+		// return ucfirst($model) .'_Controller_' .ucfirst($contro);
+		$controllerClass = implode('_', [ucfirst($this->_moduleName), 'Controller', ucfirst($this->_controllerName)]);
+        return $controllerClass;
 	}
 }

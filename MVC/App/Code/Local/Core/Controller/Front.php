@@ -9,7 +9,7 @@ class Core_Controller_Front{
         $layout = new $fullPath();
 
         // $controllerIndexObj = Mage::getModel("core/page/controller/index");
-        $controllerIndexObj = new Page_Controller_Index();
+        // $controllerIndexObj = new Page_Controller_Index();
         // $action = $controllerIndexObj->getActionName();
 
         $action = $modelObj->getActionName();
