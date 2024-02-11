@@ -1,6 +1,8 @@
 <?php
 class Mage
    {
+    private static $registry = [];
+    private static $baseDir= 'C:/xampp/hcdocs/practice/MVC';
     //    public static function init()
     //    {
     //        // $requestModel = new Core_Model_Request();
@@ -32,6 +34,10 @@ class Mage
 //    public static function getSingleton($className){}
 public static function getModel($className){
    $classNameObj = ucwords(str_replace("/","_Model_",$className),"_");
+   return new $classNameObj();
+}
+public static function getBlock($className){
+   $classNameObj = ucwords(str_replace("/","_Block_",$className),"_");
    return new $classNameObj();
 }
 // public static function register($key, $value){}
