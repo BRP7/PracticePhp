@@ -13,6 +13,8 @@ class Core_Controller_Front{
         // $action = $controllerIndexObj->getActionName();
 
         $action = $modelObj->getActionName();
+        $action=stristr($action,'?',true);
+        // $actionName= $actionName.'Action';
         // echo $action;
         $action=$action."Action";
         $layout->$action();

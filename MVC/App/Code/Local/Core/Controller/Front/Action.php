@@ -1,8 +1,12 @@
 <?php
+   
 class Core_Controller_Front_Action{
+    protected $_layout= null ;
     public function getLayout(){
-        $block = Mage::getBlock('page/home');
-        echo get_class($block);
-        return $this;
-    }
+      if(is_null($this->_layout)){
+        $this->_layout =  Mage::getBlock("COre/layout");
+      }
+       return $this->_layout;
 }
+}
+?>

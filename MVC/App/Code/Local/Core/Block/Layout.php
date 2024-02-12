@@ -8,4 +8,7 @@ class Core_Block_Layout extends Core_Block_Template{
     public function createBlock($className){
         Mage::getBlock("page/header");
     }
+    public function getRequest(){
+        return Mage::getModel('core/request');
+    }
 }

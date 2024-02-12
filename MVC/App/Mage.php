@@ -2,7 +2,7 @@
 class Mage
    {
     private static $registry = [];
-    private static $baseDir= 'C:/xampp/hcdocs/practice/MVC';
+    private static $baseDir= 'C:/xampp/htdocs/practice/MVC';
     //    public static function init()
     //    {
     //        // $requestModel = new Core_Model_Request();
@@ -54,6 +54,10 @@ public static function registry($key)
 }
 public static function getBaseDir($subDir = null)
 {
+   if($subDir){
+      return self::$baseDir."/".$subDir;
+  } 
+      return self::$baseDir;
 }
 }
    
