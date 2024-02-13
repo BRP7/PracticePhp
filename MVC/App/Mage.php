@@ -3,14 +3,6 @@ class Mage
    {
     private static $registry = [];
     private static $baseDir= 'C:/xampp/htdocs/practice/MVC';
-    //    public static function init()
-    //    {
-    //        // $requestModel = new Core_Model_Request();
-    //        // echo $requestModel->getRequestUri();
-    //        $requestModel =  Mage::getModel("core/request");
-    //        echo get_class($requestModel);
-    //        // echo $requestObject->getRequestUri();
-    //    }
     public static function init(){
         // $modelObj = new Core_Model_Request();
         // $modelObj = Mage::getModel("core/request");
@@ -21,7 +13,7 @@ class Mage
         $controllerObj->init();
         // echo $modelObj;
     }
-    //core_model_request
+    
    
     //    public static function getModel($modelName)
     //    {

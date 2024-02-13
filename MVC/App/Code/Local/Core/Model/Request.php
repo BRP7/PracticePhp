@@ -45,8 +45,9 @@ class Core_Model_Request
 	public function getRequestUri()
 	{
 		$requstUri = $_SERVER['REQUEST_URI'];
-		$str = str_replace('/practice/MVC/', '', $requstUri);
-		return $str;
+		$uri = str_replace('/practice/MVC/', '', $requstUri);
+		$uri = stristr($uri, '?', True);
+		return $uri;
 	}
 	protected $_controllerName, $_moduleName, $_actionName;
 
@@ -78,6 +79,7 @@ class Core_Model_Request
 		// $contro = $this->_controllerName;
 		// return ucfirst($model) .'_Controller_' .ucfirst($contro);
 		$controllerClass = implode('_', [ucfirst($this->_moduleName), 'Controller', ucfirst($this->_controllerName)]);
+		// $controllerClass=stristr($controllerClass,'?',true);
         return $controllerClass;
 	}
 }

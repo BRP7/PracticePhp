@@ -1,22 +1,27 @@
 <?php
 class Core_Controller_Front{
     public function init(){
-        $modelObj = Mage::getModel("core/request");
+        $modelRequestObj = Mage::getModel("core/request");
         // $modelObj->getModuleName();
         // $modelObj->getControllerName();
         // $modelObj->getActionName();
-        $fullPath = $modelObj->getFullControllerClass();
+        $fullPath = $modelRequestObj->getFullControllerClass();
+        // echo $fullPath;
         $layout = new $fullPath();
 
         // $controllerIndexObj = Mage::getModel("core/page/controller/index");
         // $controllerIndexObj = new Page_Controller_Index();
         // $action = $controllerIndexObj->getActionName();
 
-        $action = $modelObj->getActionName();
-        $action=stristr($action,'?',true);
+        $action = $modelRequestObj->getActionName();
+
+        // echo $action;
+        // echo "<br>";
         // $actionName= $actionName.'Action';
         // echo $action;
         $action=$action."Action";
+        // $action=stristr($action,'?',true);
+        // echo $action;
         $layout->$action();
     }
 }
