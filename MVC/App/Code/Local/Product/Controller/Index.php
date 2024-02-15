@@ -19,4 +19,13 @@ class Product_Controller_Index
         echo "Address New Action";
     }
 
+
+
+// class Product_Controller_Index{
+//     public function indexAction()
+//     {
+//         echo "Product_Controller";
+//     }
+// }
+
 }
