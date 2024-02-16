@@ -1,19 +1,53 @@
 <?php
 class Core_Model_Abstract{
-    protected $data = [];
-    protected $resourceClass = '';
-    protected $collectionClass = '';
-    protected $resource = null;
-    protected $collection = null;
-    public function __construct(){}
+    public function __construct(){
+        $this->init();
+    }
+    public function init(){}
+    protected $_data = [];
+    protected $_resourceClass = '';
+    protected $_collectionClass = '';
+    protected $_resource = null;
+    protected $_collection = null;
+    // public function __construct(){}
     public function setResourceClass($resourceClass){}
     public function setCollectionClass($collectionClass){}
-    public function setId($id){}
-    public function getId(){}
-    public function getResource(){}
+    public function setId($id){
+        $this->_data['id'] = $id;
+    }
+    public function getId(){
+        return $this->_data[$this->getResource()->getPrimaryKey()];
+    }
+    // public function getResource(){
+    //     $modelClass = get_class($this);
+    //     $class = substr($modelClass,0,strpos($modelClass,'_Model_')+6) . "_Resource_" .substr($modelClass,strpos($modelClass,'_Model_')+7);
+    //     // var_dump($class);//"Product_Model_Resource_Product"
+    //     return new $class;
+    // }
+    public function getResource()
+    {
+        // $modelClass = get_class($this);
+        // $modelClass = str_replace('_Model_', '_Model_Resource_', $modelClass);        
+        // return new $modelClass();
+
+       return new $this->_resourceClass();
+    }
     public function getCollection(){}
-    public function getPrimaryKey(){}
+   
     public function getTableName(){}
+    public function camelCase2UnderScore($str, $separator = "_")
+    {
+        if (empty($str)) {
+            return $str;
+        }
+        $str = lcfirst($str);
+        $str = preg_replace("/[A-Z]/", $separator . "$0", $str);
+        return strtolower($str);
+    }
+    public function __call($method, $args){
+       $name= $this->camelCase2UnderScore(substr($method,3));
+       return isset($this->_data[$name]) ? $this->_data[$name] : '';
+    }
     public function __set($key, $value){}
     public function __get($key){}
     public function __unset($key){}
@@ -22,7 +56,11 @@ class Core_Model_Abstract{
     public function addData($key, $value){}
     public function removeData($key = null){}
     public function save(){}
-    public function load($id, $column=null){}
+    public function load($id, $column=null){
+    //    $this->getResource();
+    $this->_data=$this->getResource()->load($id, $column);
+    return $this;
+    }
     public function delete(){}
 
 }

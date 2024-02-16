@@ -42,8 +42,7 @@ class Core_Block_Abstract {
 
     }
     public function render(){
-        include Mage::getBaseDir('App'). '/Design/frontend/template/' . $this->getTemplate();
-         
+        include Mage::getBaseDir('App'). '/Design/frontend/template/' . $this->getTemplate();   
      }
 
 }
