@@ -24,7 +24,7 @@ class Mage
    
 
 //    public static function getSingleton($className){}
-public static function getModel($className){
+public static function getModel($className){  //parameter  ma define krse
    $classNameObj = ucwords(str_replace("/","_Model_",$className),"_");
    return new $classNameObj();
 }

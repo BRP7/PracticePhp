@@ -19,6 +19,7 @@ class Core_Model_DB_Adapter
                 $this->config["password"], 
                 $this->config["database"]);
         }
+        return $this->connect;
     }
     public function fetchAll($query)
     {
@@ -39,9 +40,31 @@ class Core_Model_DB_Adapter
          }
          return $row;
     }
+
+    
     public function insert($query)
     {
+      $this->connect();
+      $result = mysqli_query($this->connect(), $query);
+      if($result){
+                return mysqli_insert_id($this->connect());
+        }else{
+            return FALSE;
+        }
     }
+
+
+
+
+
+
+    //   if (mysqli_query($this->connect(), $query)) {
+    //         return mysqli_insert_id($this->connect());
+    //     } else {
+    //         return FALSE;
+    //     } 
+
+    
     public function update($query)
     {
     }

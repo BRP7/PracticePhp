@@ -1,6 +1,6 @@
 <?php
 class Core_Block_Layout extends Core_Block_Template{
-    public function __construct(){
+    public function __construct(){ 
         $this->setTemplate('core/1column.phtml');
         $this->prepareChildren();
     }
@@ -21,8 +21,8 @@ class Core_Block_Layout extends Core_Block_Template{
         $messages->setTemplate('core/messages.phtml');
         $this->addChild('messages',$messages);
     }
-    public function createBlock($className){
-        return Mage::getBlock($className);
+    public function createBlock($className){  
+        return Mage::getBlock($className); 
     }
     public function getRequest(){
         return Mage::getModel('core/request');

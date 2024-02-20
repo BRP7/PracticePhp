@@ -46,7 +46,9 @@ class Core_Model_Request
 	{
 		$requstUri = $_SERVER['REQUEST_URI'];
 		$uri = str_replace('/practice/MVC/', '', $requstUri);
-		$uri = stristr($uri, '?', True);
+		if(strpos($uri,'?') !== false) 
+			$uri = stristr($uri, '?', True);
+		// print_r($uri);
 		return $uri;
 	}
 	protected $_controllerName, $_moduleName, $_actionName;
@@ -66,8 +68,9 @@ class Core_Model_Request
 	public function __construct()
 	{
 		$requestUri = $this->getRequestUri();
-        $requestUri = array_filter(explode('/', $requestUri));
+      $requestUri = array_filter(explode('/', $requestUri)); //veriable ma url mali 
         // print_r($requestUri);
+		//-> access kre
         $this->_moduleName = isset( $requestUri[0]) ?  $requestUri[0] : "page";
         $this->_controllerName = isset( $requestUri[1]) ?  $requestUri[1] : "index";
         $this->_actionName =isset( $requestUri[2]) ?  $requestUri[2] : "index";

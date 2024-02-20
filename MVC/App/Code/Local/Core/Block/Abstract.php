@@ -3,10 +3,12 @@
 class Core_Block_Abstract {
      public $template;
     public $data = [];
+    // protected $_data;
     public function setTemplate($template){
         $this->template = $template;
-
+        return $this;
     }
+    
     public function getTemplate(){
         return $this->template;
 
@@ -32,11 +34,15 @@ class Core_Block_Abstract {
 
     }
     public function setData($data){
-        $this->template->setData($data);
-
+        $this->_data = $data;
+        return $this;
+        // $this->template->setData($data);
     }
-    public function getUrl($action = null, $controller = null, $params = [], $resetParams = false){
-
+    // public function getUrl($action = null, $controller = null, $params = [], $resetParams = false){
+        
+    // }
+    public function getUrl($path){
+        return "http://localhost/practice/MVC/".$path;
     }
     public function getRequest(){
 

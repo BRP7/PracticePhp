@@ -3,12 +3,12 @@
 class Core_Controller_Front
 {
     public function init()
-    {
+    { 
         $request = Mage::getModel('core/request');
-        $actionName = $request->getActionName(). 'Action';
+        $actionName = $request->getActionName(). 'Action'; //indexAction malse //objec thi eni mathod call thase
         $className = $request->getFullControllerClass();
-        $controller = new $className();
-        $controller->$actionName();
+        $controller = new $className(); //page_controller_index object bnayu
+        $controller->$actionName();  //call ane return ahiya j thase 
     }
 }
 

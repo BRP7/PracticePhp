@@ -13,7 +13,8 @@ class Core_Model_Abstract{
     public function setResourceClass($resourceClass){}
     public function setCollectionClass($collectionClass){}
     public function setId($id){
-        $this->_data['id'] = $id;
+        $this->_data[$this->getResource()->getPrimaryKey()]= $id;
+        return $this;
     }
     public function getId(){
         return $this->_data[$this->getResource()->getPrimaryKey()];
@@ -51,11 +52,19 @@ class Core_Model_Abstract{
     public function __set($key, $value){}
     public function __get($key){}
     public function __unset($key){}
-    public function getData($key=null){}
-    public function setData($data){}
+    public function getData($key=null){
+        return $this->_data;
+    }
+    public function setData($data){
+        $this->_data = $data;
+        return $this;
+    }
     public function addData($key, $value){}
     public function removeData($key = null){}
-    public function save(){}
+    public function save(){
+        $this->getResource()->save($this);
+        return $this;
+    }
     public function load($id, $column=null){
     //    $this->getResource();
     $this->_data=$this->getResource()->load($id, $column);
